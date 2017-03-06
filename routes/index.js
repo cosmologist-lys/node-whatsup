@@ -5,8 +5,9 @@ router.use(function (req, res, next) {
   console.info('Enter index:'+req.url);
   next();
 });
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express',content : 'lalaLand' });
+  res.render('index', { title: 'LALALAND'});
 });
 
 module.exports = router;

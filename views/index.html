@@ -3,8 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title><%=title%></title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
 </head>
-<body>
-    <%=content%>
+<body class="row text-center vertical-middle-sm " background="..\public\images\cosmos.jpg">
+<div style="padding-top:12%">
+</div>
+<div class="container">
+    <div class="login-content">
+        <div class="form-login-error">
+            <h3 style="color: white;">Cosmo-Kpl Settlite</h3>
+            <p style="color: white;">Enter <strong>YOUR ACCOUNT</strong> to login .</p>
+        </div>
+        <form method="post" role="form">
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </div>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Username"
+                           autocomplete="off"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="	glyphicon glyphicon-star"></i>
+                    </div>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Password"
+                           autocomplete="off"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-login">
+                    <i class="fa fa-sign-in"></i>
+                    Login In
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
 </body>
 </html>
