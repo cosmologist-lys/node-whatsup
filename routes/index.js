@@ -24,13 +24,15 @@ router.post('/',function (req, res) {
             //uid : tool.getUiid(),
             //role:1,
             name:name,
-            password:tool.getCipher(psw),
+            password:tool.getCipher(psw)
             //creatTime:new Date().toLocaleDateString(),
             //lastLogTime:new Date().toLocaleDateString()
         });
        SysUser.findOne({name : name},function (err, doc) {
             console.error('find one'+doc);
-            res.render('home',{user : doc})
+            if (tool.getCipher(psw) == doc.password)
+                res.render('home',{user : doc});
+           else res.redirect('/');
        });
     }else{
         res.redirect('/');
