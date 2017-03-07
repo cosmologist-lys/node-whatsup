@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var tool = require('../tool/tool');
 var SysUser = require('../model/SysUser').Demo;
 mongoose.connect('mongodb://localhost/whatsup_sysuser');
+var fn = require('../tool/fn');
 
 
 router.use(function (req, res, next) {
@@ -11,8 +12,8 @@ router.use(function (req, res, next) {
   next();
 });
 
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'LALALAND'});
+router.get('/', function(req, res) {
+    res.render('log');
 });
 
 router.post('/',function (req, res) {
@@ -38,12 +39,18 @@ router.post('/',function (req, res) {
         res.redirect('/');
     }
 });
-
+router.get('/reg',function (req, res) {
+    res.render('reg');
+});
 router.post('/reg',function (req, res) {
-    console.info('reg');
-    console.log(req.param());
-    console.log(req.body.username);
-
+    var name = req.body.username;
+    var psw = req.body.password;
+    if(!tool.isNotNull(name,psw)){
+        var l = fn.validateName(name);
+        var l1 = fn.validatePassword(psw);
+        console.error(l+'==='+l1);
+        res.redirect('/reg');
+    }
 });
 
 
