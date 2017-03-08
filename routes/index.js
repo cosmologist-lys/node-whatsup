@@ -6,7 +6,6 @@ var SysUser = require('../model/SysUser').Demo;
 mongoose.connect('mongodb://localhost/whatsup_sysuser');
 var fn = require('../tool/fn');
 
-
 router.use(function (req, res, next) {
   console.info('Enter index:'+req.url);
   next();
@@ -40,16 +39,37 @@ router.post('/',function (req, res) {
     }
 });
 router.get('/reg',function (req, res) {
-    res.render('reg');
+    res.render('reg',{errmsg : '',sucmsg :''});
 });
 router.post('/reg',function (req, res) {
     var name = req.body.username;
     var psw = req.body.password;
-    if(!tool.isNotNull(name,psw)){
-        var l = fn.validateName(name);
-        var l1 = fn.validatePassword(psw);
-        console.error(l+'==='+l1);
-        res.redirect('/reg');
+    if(tool.isNotNull(name,psw) && fn.validatePassword(psw)){
+        SysUser.findOne({name:name},function (err, doc) {
+            if (err) console.error(err);
+            else {
+                if (tool.isNotNull(doc)){//重复注册
+                    console.error('reg post user.findone:'+doc);
+                    res.render('reg',{errmsg : 'Duplicated Account!!!',sucmsg : ''});
+                }else{//可以注册
+                    var user = new SysUser({
+                        uid : tool.getUiid(),
+                        role: 1,
+                        name : name,
+                        password : tool.getCipher(psw)
+                    });
+                    user.save(function (err, doc) {
+                        if (!err){
+                            console.error('user.save:'+doc);
+                            res.render('reg',{sucmsg : 'Reg Successful!!!',errmsg :''});
+                            setTimeout(res.redirect('/'),1500);
+                        }
+                    });
+                }
+            }
+        });
+    }else{
+        res.render('reg',{errmsg : 'Input Error!!!',sucmsg:''})
     }
 });
 

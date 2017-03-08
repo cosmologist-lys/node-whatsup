@@ -19,8 +19,8 @@ var util = {
             if (arg=='' || arg ==null || arg=='undefine')
                 cnt++;
         }
-        if (cnt>0) return true;
-        else return false;
+        if (cnt>0) return false;
+        else return true;
     }
 };
 

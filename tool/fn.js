@@ -1,6 +1,6 @@
 var SysUser = require('../model/SysUser').Demo;
 var tool = require('./tool.js');
-
+var q = require('q');
 
 var fn = {
     validateName : function (username) {
@@ -13,9 +13,7 @@ var fn = {
         });
     },
     validatePassword : function (psw) {
-        if (!tool.isNotNull(psw))
-            var len = psw.length;
-        return (len>3)?true : false;
+        return (psw.length>3)?true : false;
     }
 };
 
