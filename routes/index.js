@@ -12,32 +12,33 @@ router.use(function (req, res, next) {
 });
 
 router.get('/', function(req, res) {
-    res.render('log');
+    res.render('log',{sucmsg : '',errmsg : ''});
 });
 
 router.post('/',function (req, res) {
-  var name = req.body.username;
-  var psw = req.body.password;
-    if (tool.isNotNull(name,psw)==false){
-        console.info('create user');
-        var user = new SysUser({
-            //uid : tool.getUiid(),
-            //role:1,
-            name:name,
-            password:tool.getCipher(psw)
-            //creatTime:new Date().toLocaleDateString(),
-            //lastLogTime:new Date().toLocaleDateString()
+    var name = req.body.username;
+    var psw = tool.getCipher(req.body.password);
+    if (tool.isNotNull(name,psw)){
+        SysUser.findOne({name : name,password:psw},function (err, doc) {
+            if (err) console.error(err);
+            else{
+                if (tool.isNotNull(doc)) {
+                    doc.lastLogTime = new Date();
+                    SysUser.findByIdAndUpdate(doc.id,doc,function (err, data) {
+                        console.error('find by id and update:'+data);
+                        res.render('home',{user:data});
+                    })
+                }
+                else res.render('log',{errmsg :'Acount Wrong!!!',sucmsg:''})
+            }
         });
-       SysUser.findOne({name : name},function (err, doc) {
-            console.error('find one'+doc);
-            if (tool.getCipher(psw) == doc.password)
-                res.render('home',{user : doc});
-           else res.redirect('/');
-       });
+
     }else{
-        res.redirect('/');
+        res.render('log',{errmsg :'Input Wrong!!!',sucmsg:''})
     }
 });
+
+
 router.get('/reg',function (req, res) {
     res.render('reg',{errmsg : '',sucmsg :''});
 });
@@ -50,7 +51,7 @@ router.post('/reg',function (req, res) {
             else {
                 if (tool.isNotNull(doc)){//重复注册
                     console.error('reg post user.findone:'+doc);
-                    res.render('reg',{errmsg : 'Duplicated Account!!!',sucmsg : ''});
+                    res.render('reg',{errmsg : 'Duplicated Account!!!'});
                 }else{//可以注册
                     var user = new SysUser({
                         uid : tool.getUiid(),
@@ -61,15 +62,14 @@ router.post('/reg',function (req, res) {
                     user.save(function (err, doc) {
                         if (!err){
                             console.error('user.save:'+doc);
-                            res.render('reg',{sucmsg : 'Reg Successful!!!',errmsg :''});
-                            setTimeout(res.redirect('/'),1500);
+                            res.render('log',{sucmsg : 'Reg Successful!!!',errmsg : ''});
                         }
                     });
                 }
             }
         });
     }else{
-        res.render('reg',{errmsg : 'Input Error!!!',sucmsg:''})
+        res.render('reg',{errmsg : 'Input Error!!!'})
     }
 });
 
