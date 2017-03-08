@@ -19,19 +19,25 @@ router.post('/',function (req, res) {
     var name = req.body.username;
     var psw = tool.getCipher(req.body.password);
     if (tool.isNotNull(name,psw)){
-        SysUser.findOne({name : name,password:psw},function (err, doc) {
-            if (err) console.error(err);
-            else{
-                if (tool.isNotNull(doc)) {
-                    doc.lastLogTime = new Date();
-                    SysUser.findByIdAndUpdate(doc.id,doc,function (err, data) {
-                        console.error('find by id and update:'+data);
-                        res.render('home',{user:data});
-                    })
+        //todo 1.验证session里是否有。2验证MONGO里是否有
+        if (tool.isNotNull(req.session.user) && name == req.session.user.name && psw == req.session.user.password){
+            res.render('home',{user:req.session.user});
+        }else{
+            SysUser.findOne({name : name,password:psw},function (err, doc) {
+                if (err) console.error(err);
+                else{
+                    if (tool.isNotNull(doc)) {
+                        doc.lastLogTime = new Date();
+                        SysUser.findByIdAndUpdate(doc.id,doc,function (err, data) {
+                            console.error('find by id and update:'+data);
+                            req.session.user = data;
+                            res.render('home',{user:data});
+                        })
+                    }
+                    else res.render('log',{errmsg :'Acount Wrong!!!',sucmsg:''})
                 }
-                else res.render('log',{errmsg :'Acount Wrong!!!',sucmsg:''})
-            }
-        });
+            });
+        }
     }else{
         res.render('log',{errmsg :'Input Wrong!!!',sucmsg:''})
     }
