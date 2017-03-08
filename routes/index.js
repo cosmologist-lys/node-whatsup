@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/whatsup_sysuser');
 var fn = require('../tool/fn');
 
 router.use(function (req, res, next) {
-  console.info('Enter index:'+req.url);
+  console.error('Enter index:'+req.cookies.toString());
   next();
 });
 
@@ -32,7 +32,6 @@ router.post('/',function (req, res) {
                 else res.render('log',{errmsg :'Acount Wrong!!!',sucmsg:''})
             }
         });
-
     }else{
         res.render('log',{errmsg :'Input Wrong!!!',sucmsg:''})
     }
@@ -61,7 +60,8 @@ router.post('/reg',function (req, res) {
                     });
                     user.save(function (err, doc) {
                         if (!err){
-                            console.error('user.save:'+doc);
+                            req.session.user = doc;
+                            console.info(req.session.user+"----"+req.session);
                             res.render('log',{sucmsg : 'Reg Successful!!!',errmsg : ''});
                         }
                     });
