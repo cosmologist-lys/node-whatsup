@@ -6,8 +6,10 @@ var SysUser = require('../model/SysUser').Demo;
 mongoose.connect('mongodb://localhost/whatsup_sysuser');
 var fn = require('../tool/fn');
 
+
 router.use(function (req, res, next) {
-  console.error('Enter index:'+req.cookies.toString());
+  console.error('index coockies:'+JSON.stringify(req.cookies));
+  console.error('index session:'+JSON.stringify(req.session));
   next();
 });
 
@@ -29,8 +31,9 @@ router.post('/',function (req, res) {
                     if (tool.isNotNull(doc)) {
                         doc.lastLogTime = new Date();
                         SysUser.findByIdAndUpdate(doc.id,doc,function (err, data) {
-                            console.error('find by id and update:'+data);
+                            //console.error('find by id and update:'+data);
                             req.session.user = data;
+                            console.error('session:'+JSON.stringify(req.session));
                             res.render('home',{user:data});
                         })
                     }

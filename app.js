@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session =  require('express-session');
+var MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -21,15 +22,23 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser('polanskikepler1989'));
 app.use(express.static(path.join(__dirname, 'public')));
 //set session
 app.use(session({
-    secret: 'keyboard cat',
+    secret: 'littletiger',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true,maxAge:60000 }
+    /*store: new MongoStore({
+        url: 'mongodb://@localhost:27017/mongosession',
+        ttl: 14 * 24 * 60 * 60 // = 14 days. Default
+    })*/
 }));
+app.use(function(req, res, next){
+    res.locals.session = req.session;
+    next();
+});
 app.use('/', index);
 app.use('/users', users);
 
