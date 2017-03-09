@@ -34,7 +34,7 @@ router.post('/',function (req, res) {
                             //console.error('find by id and update:'+data);
                             req.session.user = data;
                             console.error('session:'+JSON.stringify(req.session));
-                            res.render('home',{user:data});
+                            res.render('home',{user:data,time:new Date().toLocaleDateString()});
                         })
                     }
                     else res.render('log',{errmsg :'Acount Wrong!!!',sucmsg:''})
