@@ -1,0 +1,27 @@
+
+.d1{
+    background: #66afe9;
+    margin:0 auto;
+    float: left;
+    width: 35%;
+    height: 35%;
+    padding-left: 150px;
+    padding-top: 100px;
+    border: solid white;
+}
+.d2{
+    background: #c9e2b3;
+}
+.dtop{
+    padding-top: 200px;
+    border:solid white;
+}
+.dleft{
+    float: left;
+    padding-left: 160px;
+    border:solid white;
+}
+.fontcol{
+    font: "Consolas";
+    color: whitesmoke;
+}

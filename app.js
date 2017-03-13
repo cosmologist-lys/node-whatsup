@@ -5,10 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session =  require('express-session');
-var MongoStore = require('connect-mongo')(session);
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var blog = require('./routes/blog');
 
 var app = express();
 var ejs = require('ejs');
@@ -22,25 +21,19 @@ app.set('view engine', 'html');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser('polanskikepler1989'));
-app.use(express.static(path.join(__dirname, 'public')));
-//set session
+app.use(cookieParser());
 app.use(session({
-    secret: 'littletiger',
+    secret: 'kepler',
+    //name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    cookie: {maxAge: 60000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
     resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true,maxAge:60000 }
-    /*store: new MongoStore({
-        url: 'mongodb://@localhost:27017/mongosession',
-        ttl: 14 * 24 * 60 * 60 // = 14 days. Default
-    })*/
+    saveUninitialized: true
 }));
-app.use(function(req, res, next){
-    res.locals.session = req.session;
-    next();
-});
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use('/', index);
-app.use('/users', users);
+app.use('/blog', blog);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
