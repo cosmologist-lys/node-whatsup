@@ -92,7 +92,7 @@ router.post('/log',function (req, res) {
                             //console.error('find by id and update:'+data);
                             req.session.user = data;
                             console.error('postlog session:'+JSON.stringify(req.session));
-                            res.redirect('/blog/home');
+                            res.redirect('/home/main');
                         })
                     }else{
                         req.session.errmsg = 'Acount Wrong!!!';
