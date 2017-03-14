@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 
 var Blog = new Schema({
     title:String,
+	shortCut:String,
     author:String,
     authorid:String,
     createTime :{

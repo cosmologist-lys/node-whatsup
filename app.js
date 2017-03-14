@@ -8,6 +8,7 @@ var session =  require('express-session');
 
 var index = require('./routes/index');
 var home = require('./routes/home');
+var blog = require('./routes/blog');
 
 var app = express();
 var ejs = require('ejs');
@@ -20,12 +21,12 @@ app.set('view engine', 'html');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
     secret: 'kepler',
     //name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
-    cookie: {maxAge: 60000 },  //设置maxAge是80000ms，即80s后session和相应的cookie失效过期
+    cookie: {maxAge: 60*1000*60*24 },  //设置maxAge是1天，即1天后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true
 }));
@@ -33,7 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/home', home);
-
+app.use('/blog',blog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,7 +44,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+/*app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -51,6 +52,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
+});*/
 
 module.exports = app;

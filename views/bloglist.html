@@ -8,96 +8,45 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>
-                                    dsfsd
-                                </th>
-                                <th>
-                                    产品
-                                </th>
-                                <th>
-                                    交付时间
-                                </th>
-                                <th>
-                                    状态
-                                </th>
+                                <th>title</th>
+                                <th>author</th>
+                                <th>shortcut</th>
+                                <th>createTime</th>
+                                <th>lastEditTime</th>
+                                <th>words</th>
+                                <th>options</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    01/04/2012
-                                </td>
-                                <td>
-                                    Default
-                                </td>
-                            </tr>
-                            <tr class="success">
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    01/04/2012
-                                </td>
-                                <td>
-                                    Approved
-                                </td>
-                            </tr>
-                            <tr class="error">
-                                <td>
-                                    2
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    02/04/2012
-                                </td>
-                                <td>
-                                    Declined
-                                </td>
-                            </tr>
-                            <tr class="warning">
-                                <td>
-                                    3
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    03/04/2012
-                                </td>
-                                <td>
-                                    Pending
-                                </td>
-                            </tr>
-                            <tr class="info">
-                                <td>
-                                    4
-                                </td>
-                                <td>
-                                    TB - Monthly
-                                </td>
-                                <td>
-                                    04/04/2012
-                                </td>
-                                <td>
-                                    Call in to confirm
-                                </td>
-                            </tr>
+                           <% if(blogs!=null){ %>
+                           <% blogs.forEach(function (blog){ %>
+                           <tr >
+                               <td><%= blog.title %></td>
+                               <td><%= blog.author %></td>
+                               <td><%= blog.shortCut %></td>
+                               <td><%= blog.ctime %></td>
+                               <td><%= blog.etime %></td>
+                               <td><%= blog.words%></td>
+                               <td><a href="/blog/delete?id=<%= blog.id %>">Delete</a> |
+                                   <a href="/blog/edit?id=<%= blog.id %>">Edit</a></td>
+                           </tr>
+                           <% }) }else{%>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                           <td>--</td>
+                            <%}%>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+        </div>
+        <div>
+            <a type="button" class="btn btn-lg btn-success btn-block" href="/blog/add"><strong><%=user.name%></strong> Wants to New Blog?</a>
         </div>
     </div>
 

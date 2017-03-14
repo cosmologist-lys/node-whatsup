@@ -23,13 +23,15 @@
 </head>
 <body>
 <div>
-<div class="container-fluid" style="background-color: #ff8375">
+<div class="container-fluid" style="background-color: #555555">
     <div class="row-fluid">
         <div class="span12">
             <div class="row-fluid">
                 <div class="span6">
                     <h3><span class="tt"> welcome </span><strong><span class="tname"><%=user.name%></span></strong>    <span class="timett"><%=time%></span></h3>
                 </div>
+                <div><form action="/home/logout" method="get">
+                    <button class="glyphicon glyphicon-home"> Logout</button></form></div>
                 <div class="span6">
                     <ul class="nav nav-tabs">
                         <li><a href="#"><span class="tt">BLOG</span></a></li>
