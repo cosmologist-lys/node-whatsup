@@ -69,29 +69,43 @@ router.post('/edit',function (req, res) {
 	var short = req.body.shortCut;
 	var content = req.body.content;
 	var id = req.body.id;
+	var authorid = req.session.user._id;
+	console.info('authorid='+authorid);
 	if (tool.isNotNull(title,short,content)){
 		var blog = new Blog({
 			title : title,
 			shortCut : short,
 			author : req.session.user.name,
-			authorid : req.session.user._id,
+			authorid : authorid,
 			content : content,
 			words : content.length,
 			lastEditTime : new Date()
 		});
-		/*Blog.findByIdAndUpdate(id,blog,function (err, doc) {
-			if (!err) {
-				console.log(doc);
-				res.redirect('/blog/list');
-			}
-		})*/
 		if (id && id !=''){
-			Blog.findByIdAndUpdate(id,blog,function (err, docs) {
+			/*Blog.findByIdAndUpdate(id,blog,function (err, docs) {
 				if (err) console.error(err);
 				else console.info('update '+docs);
 				res.redirect('/blog/list');
-			})
+			});*/
+			Blog.update({_id:id},
+				{$set:{title:title,shortCut:short,author : req.session.user.name,
+					authorid : authorid,
+					content : content,
+					words : content.length,
+					lastEditTime : new Date()}},function (err) {
+					if (!err) res.redirect('/blog/list');
+				});
 		}
+	}
+});
+
+router.get('/delete',function (req, res) {
+	var id = req.query.id;
+	if (id && id!=''){
+		Blog.findByIdAndRemove(id,function (err, doc) {
+			if (err) console.error('FINDBYIDANDREMOVE ERR:'+err)
+			else res.redirect('/blog/list');
+		});
 	}
 });
 
