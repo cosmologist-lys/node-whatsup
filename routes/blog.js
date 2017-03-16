@@ -8,7 +8,7 @@ router.use(function (req, res,next) {
 	if (!req.session.user) res.redirect('/');
 	next();
 });
-
+//header.html页面tag标签如何在赋值之后再进行渲染？而不是先渲染
 router.get('/list',function (req, res) {
 	var user = req.session.user;
 	var id = user._id;
