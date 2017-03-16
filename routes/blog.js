@@ -24,14 +24,14 @@ router.get('/list',function (req, res) {
 				blogs.push(doc)
 			});
 			res.render('bloglist',
-				{blogs:blogs,user:user,time:new Date().toLocaleDateString()});
+				{tag:'blog',blogs:blogs,user:user,time:new Date().toLocaleDateString()});
 		}
 	});
 });
 
 router.get('/add',function (req, res) {
 	var user = req.session.user;
-	res.render('addblog',{user:user,time:new Date().toLocaleDateString()});
+	res.render('addblog',{tag:'tag',user:user,time:new Date().toLocaleDateString()});
 });
 
 router.post('/add',function (req, res) {
@@ -59,7 +59,7 @@ router.get('/edit',function (req, res) {
 	var user = req.session.user;
 	if (tool.isNotNull(id)){
 		Blog.findById(id,function (err, doc) {
-			if (!err) res.render('blogedit',{blog:doc,user:user,time:new Date().toLocaleDateString()});
+			if (!err) res.render('blogedit',{tag:'tag',blog:doc,user:user,time:new Date().toLocaleDateString()});
 		})
 	}
 });

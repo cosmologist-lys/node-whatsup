@@ -9,9 +9,10 @@
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
     <style>
         .tt{
-            color: ghostwhite;
+            color: #cccccc;
         }
         .timett{
             color: cadetblue;
@@ -20,6 +21,13 @@
             color: lightskyblue;
         }
     </style>
+    <script type="text/javascript">
+	    document.getElementById("tag").onload=function(){
+		    var tag = $("#tag").val();
+		    //alert('tag'+tag);
+		    $("#"+tag+"").attr("class","active");
+	    };
+    </script>
 </head>
 <body>
 <div>
@@ -34,9 +42,11 @@
                     <button class="glyphicon glyphicon-home"> Logout</button></form></div>
                 <div class="span6">
                     <ul class="nav nav-tabs">
-                        <li><a href="#"><span class="tt">BLOG</span></a></li>
-                        <li><a href="#"><span class="tt">WEATHER</span></a></li>
-                        <li><a href="#"><span class="tt">NOTE</span></a></li>
+                        <input type="hidden" value="<%=tag%>" id="tag">
+                        <li id="blog"><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li id="weatherg"><a href="#"><span class="tt">WEATHER</span></a></li>
+                        <li id="note"><a href="#"><span class="tt">NOTE</span></a></li>
+                        <li id="socket"><a href="#"><span class="tt">SOCKET</span></a></li>
                         <li class="dropdown pull-right">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="tt">MORE</span><strong class="caret"></strong></a>
                             <ul class="dropdown-menu">
