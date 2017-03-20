@@ -22,11 +22,6 @@
         }
     </style>
     <script type="text/javascript">
-	    document.getElementById("tag").onload=function(){
-		    var tag = $("#tag").val();
-		    //alert('tag'+tag);
-		    $("#"+tag+"").attr("class","active");
-	    };
     </script>
 </head>
 <body>
@@ -43,10 +38,27 @@
                 <div class="span6">
                     <ul class="nav nav-tabs">
                         <input type="hidden" value="<%=tag%>" id="tag">
-                        <li id="blog"><a href="#"><span class="tt">BLOG</span></a></li>
-                        <li id="weatherg"><a href="#"><span class="tt">WEATHER</span></a></li>
-                        <li id="note"><a href="#"><span class="tt">NOTE</span></a></li>
-                        <li id="socket"><a href="#"><span class="tt">SOCKET</span></a></li>
+                        <%if(flg=='blog'){%>
+                        <li  class="active"><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li><a href="#"><span class="tt">WEATHER</span></a></li>
+                        <li><a href="#"><span class="tt">NOTE</span></a></li>
+                        <li><a href="#"><span class="tt">SOCKET</span></a></li>
+                        <%}else if(flg=='weather'){%>
+                        <li ><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li class="active"><a href="#"><span class="tt">WEATHER</span></a></li>
+                        <li><a href="#"><span class="tt">NOTE</span></a></li>
+                        <li><a href="#"><span class="tt">SOCKET</span></a></li>
+                        <%}else if(flg =='note'){%>
+                        <li ><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li><a href="#"><span class="tt">WEATHER</span></a></li>
+                        <li class="active"><a href="#"><span class="tt">NOTE</span></a></li>
+                        <li><a href="#"><span class="tt">SOCKET</span></a></li>
+                        <%}else if(flg =='socket'){%>
+                        <li ><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li><a href="#"><span class="tt">WEATHER</span></a></li>
+                        <li><a href="#"><span class="tt">NOTE</span></a></li>
+                        <li class="active"><a href="#"><span class="tt">SOCKET</span></a></li>
+                        <%}%>
                         <li class="dropdown pull-right">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle"><span class="tt">MORE</span><strong class="caret"></strong></a>
                             <ul class="dropdown-menu">

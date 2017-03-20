@@ -23,8 +23,9 @@ router.get('/list',function (req, res) {
 				doc.etime = etime;
 				blogs.push(doc)
 			});
+			var flg = 'blog';//激活标志
 			res.render('bloglist',
-				{tag:'blog',blogs:blogs,user:user,time:new Date().toLocaleDateString()});
+				{tag:'blog',flg:flg,blogs:blogs,user:user,time:new Date().toLocaleDateString()});
 		}
 	});
 });
