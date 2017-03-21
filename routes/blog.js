@@ -25,7 +25,7 @@ router.get('/list',function (req, res) {
 			});
 			var flg = 'blog';//激活标志
 			res.render('blog/bloglist',
-				{tag:'blog',flg:flg,blogs:blogs,user:user,time:new Date().toLocaleDateString()});
+				{flg:flg,blogs:blogs,user:user,time:new Date().toLocaleDateString()});
 		}
 	});
 });
@@ -33,7 +33,7 @@ router.get('/list',function (req, res) {
 router.get('/add',function (req, res) {
 	var user = req.session.user;
 	var flg = 'blog';
-	res.render('blog/addblog',{tag:'tag',flg:flg,user:user,time:new Date().toLocaleDateString()});
+	res.render('blog/addblog',{flg:flg,user:user,time:new Date().toLocaleDateString()});
 });
 
 router.post('/add',function (req, res) {
@@ -62,7 +62,7 @@ router.get('/edit',function (req, res) {
 	var flg ='blog';
 	if (tool.isNotNull(id)){
 		Blog.findById(id,function (err, doc) {
-			if (!err) res.render('blog/blogedit',{tag:'tag',flg:flg,blog:doc,user:user,time:new Date().toLocaleDateString()});
+			if (!err) res.render('blog/blogedit',{flg:flg,blog:doc,user:user,time:new Date().toLocaleDateString()});
 		})
 	}
 });

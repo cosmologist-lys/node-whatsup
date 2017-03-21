@@ -37,26 +37,25 @@
                     <button class="glyphicon glyphicon-home"> Logout</button></form></div>
                 <div class="span6">
                     <ul class="nav nav-tabs">
-                        <input type="hidden" value="<%=tag%>" id="tag">
                         <%if(flg=='blog'){%>
-                        <li  class="active"><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li  class="active"><a href="/blog/list"><span class="tt">BLOG</span></a></li>
                         <li><a href="#"><span class="tt">WEATHER</span></a></li>
-                        <li><a href="#"><span class="tt">BLUEPRINT</span></a></li>
+                        <li><a href="/blue/index"><span class="tt">BLUEPRINT</span></a></li>
                         <li><a href="#"><span class="tt">SOCKET</span></a></li>
                         <%}else if(flg=='weather'){%>
-                        <li ><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li ><a href="/blog/list"><span class="tt">BLOG</span></a></li>
                         <li class="active"><a href="#"><span class="tt">WEATHER</span></a></li>
-                        <li><a href="#"><span class="tt">BLUEPRINT</span></a></li>
+                        <li><a href="/blue/index"><span class="tt">BLUEPRINT</span></a></li>
                         <li><a href="#"><span class="tt">SOCKET</span></a></li>
-                        <%}else if(flg =='note'){%>
-                        <li ><a href="#"><span class="tt">BLOG</span></a></li>
+                        <%}else if(flg =='blue'){%>
+                        <li ><a href="/blog/list"><span class="tt">BLOG</span></a></li>
                         <li><a href="#"><span class="tt">WEATHER</span></a></li>
-                        <li class="active"><a href="#"><span class="tt">BLUEPRINT</span></a></li>
+                        <li class="active"><a href="/blue/index"><span class="tt">BLUEPRINT</span></a></li>
                         <li><a href="#"><span class="tt">SOCKET</span></a></li>
                         <%}else if(flg =='socket'){%>
-                        <li ><a href="#"><span class="tt">BLOG</span></a></li>
+                        <li ><a href="/blog/list"><span class="tt">BLOG</span></a></li>
                         <li><a href="#"><span class="tt">WEATHER</span></a></li>
-                        <li><a href="#"><span class="tt">BLUEPRINT</span></a></li>
+                        <li><a href="/blue/index"><span class="tt">BLUEPRINT</span></a></li>
                         <li class="active"><a href="#"><span class="tt">SOCKET</span></a></li>
                         <%}%>
                         <li class="dropdown pull-right">
