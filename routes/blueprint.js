@@ -4,7 +4,12 @@ var tool = require('../tool/tool');
 var fn = require('../tool/fn');
 var orc = require('../tool/orc');
 var fs = require('fs');
+var multer = require('multer');
+var upload = multer({ dest: 'public/images'});
 
+var apikey = "b351ec2de1e948afac53bb994c16446a";
+var secretkey = "f202e75b15514cb6a84b2b161ea252ac";
+var ocr = require('baidu-ocr-api').create(apikey,secretkey);
 
 
 router.use(function (req, res, next) {
@@ -16,13 +21,32 @@ router.get('/index',function (req, res) {
 	var user = req.session.user;
 	var time = new Date().toLocaleDateString();
 	var result = orc.scan;
-	res.render('blueprint/bpindex',{flg:'blue',time:time,user:user})
+	var translate = req.session.translate || '';
+	res.render('blueprint/bpindex',{flg:'blue',time:time,user:user,translate:translate})
 });
 
-router.post('/index',function (req, res) {
-	var stream = req.body.img;
-	fs.writeFileSync()
-	if(stream) console.error(stream.toString());
+router.post('/index',upload.single('file'),function (req, res) {
+	var fname = JSON.stringify(req.file['filename']);
+	fname = fname.replace(/\"/g, "");
+	var imgPath = 'F:/Devs_Kepl/JS-Projects/node-whatsup/public/images/'+fname;
+	//var translate = orc.scan(imgPath);
+	ocr.scan({
+		url:imgPath,
+		type:'text'
+	}).then(function (result) {
+		var translate = result;
+		fs.unlink(imgPath,function (err) {
+			if (err) console.error(err);
+			else {
+				console.log('delete suc!');
+				translate = JSON.stringify(translate['results']['words']);
+				req.session.translate = translate;
+				res.redirect('/blue/index');
+			}
+		})
+	}).catch(function (err) {
+		console.error('err', err);
+	});
 });
 
 module.exports = router;
