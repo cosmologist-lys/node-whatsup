@@ -6,10 +6,9 @@ var orc = require('../tool/orc');
 var fs = require('fs');
 var multer = require('multer');
 var upload = multer({ dest: 'public/images'});
+var kfg = require('../kfg');
 
-var apikey = "b351ec2de1e948afac53bb994c16446a";
-var secretkey = "f202e75b15514cb6a84b2b161ea252ac";
-var ocr = require('baidu-ocr-api').create(apikey,secretkey);
+var ocr = require('baidu-ocr-api').create(kfg.apikey,kfg.secretkey);
 
 
 router.use(function (req, res, next) {
@@ -20,7 +19,6 @@ router.use(function (req, res, next) {
 router.get('/index',function (req, res) {
 	var user = req.session.user;
 	var time = new Date().toLocaleDateString();
-	var result = orc.scan;
 	var translate = req.session.translate || '';
 	res.render('blueprint/bpindex',{flg:'blue',time:time,user:user,translate:translate})
 });

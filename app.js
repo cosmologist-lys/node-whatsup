@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var home = require('./routes/home');
 var blog = require('./routes/blog');
 var blueprint = require('./routes/blueprint');
+var weather = require('./routes/weather');
 
 var app = express();
 var ejs = require('ejs');
@@ -37,6 +38,7 @@ app.use('/', index);
 app.use('/home', home);
 app.use('/blog',blog);
 app.use('/blue',blueprint);
+app.use('/wea',weather);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
