@@ -1,7 +1,57 @@
 <% include ../header.html %>
 <h3>weather</h3>
-<p><%=cities%></p>
+<div class="container-fluid">
+    <ul class="nav nav-tabs">
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Area
+                <span class="caret"></span></a>
+        <% if(areas){%>
+            <ul class="dropdown-menu" role="menu">
+                <% areas.forEach(function(area){%>
+                <li>
+                    <a href="/wea/queryProvince?no=<%=area.no%>"><%=area.name%></a></li>
+                <%})%>
+            </ul>
+        <%}%>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Province
+            <span class="caret"></span></a>
+        <% if(pros){%>
+        <ul class="dropdown-menu" role="menu">
+            <% pros.forEach(function(pro){%>
+            <li>
+                <a href="/wea/queryCity?no=<%=pro.no%>"><%=pro.name%></a></li>
+            <%})%>
+        </ul>
+        <%}%>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">City
+            <span class="caret"></span></a>
+        <% if(cities){%>
+        <ul class="dropdown-menu" role="menu">
+            <% cities.forEach(function(city){%>
+            <li>
+                <a href="/wea/queryCounty?no=<%=city.no%>"><%=city.name%></a></li>
+            <%})%>
+        </ul>
+        <%}%>
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">County
+            <span class="caret"></span></a>
+        <% if(counties){%>
+        <ul class="dropdown-menu" role="menu">
+            <% counties.forEach(function(cou){%>
+            <li>
+                <a href="#"><%=cou.name%></a></li>
+            <%})%>
+        </ul>
+        <%}%>
+    </ul>
+</div>
+
 <form method="post" class="form-horizontal" role="form">
     <input type="submit" class="btn btn-primary" value="GET">
 </form>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <% include ../footer.html %>

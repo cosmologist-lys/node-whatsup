@@ -45,6 +45,15 @@ var util = {
 		var min = da.getMinutes();
 		min = min.toString().length<2? '0'+min:min;
 		return [year,month,date].join('')+[hour,min].join(':');
+	},
+	randomInArea : function () {
+		var guess = Math.floor(Math.random()*10);
+		var cb;
+		if ( 0 <= guess && guess <= 2 ) cb = 1;
+		else if ( 3 <= guess && guess <= 4) cb = 2;
+		else if ( 5 <= guess && guess <= 7) cb = 3;
+		else cb = 4;
+		return cb;
 	}
 };
 

@@ -7,5 +7,7 @@ module.exports = {
 		port:'',
 		method:'GET'
 	},
-	prurl : 'http://guolin.tech/api/china'
+	prurl : 'http://guolin.tech/api/china',
+	cityurl : 'http://guolin.tech/api/china/prono',
+	countyurl : 'http://guolin.tech/api/china/prono/cityno'
 };

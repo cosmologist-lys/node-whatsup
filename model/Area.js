@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var Province = new Schema({
+var Area = new Schema({
 	no:Number,
-	areaNo:Number,
 	name:String
 });
 
-exports.Demo = mongoose.model('Province', Province);
+exports.Demo = mongoose.model('Area', Area);

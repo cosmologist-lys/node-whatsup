@@ -3,6 +3,8 @@ var kfg = require('../kfg');
 var City = require('../model/City').Demo;
 var Province = require('../model/Province').Demo;
 var County = require('../model/County').Demo;
+var Area = require('../model/Area').Demo;
+var tool = require('../tool/tool');
 
 var reqUtil = {
 	queryProvince : function () {
@@ -12,6 +14,7 @@ var reqUtil = {
 				for(var i=0;i<pros.length;i++){
 					var pro = new Province({
 						no : pros[i].id,
+						areaNo: tool.randomInArea(),
 						name:pros[i].name
 					});
 					pro.save(function (err, doc) {
