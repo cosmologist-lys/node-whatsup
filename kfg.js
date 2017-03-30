@@ -9,5 +9,7 @@ module.exports = {
 	},
 	prurl : 'http://guolin.tech/api/china',
 	cityurl : 'http://guolin.tech/api/china/prono',
-	countyurl : 'http://guolin.tech/api/china/prono/cityno'
+	countyurl : 'http://guolin.tech/api/china/prono/cityno',
+	weatherKey : '035a2fdbe62b411e921d754c84240460',
+	weatherUrl : 'https://free-api.heweather.com/v5/weather?city=yourcity&key=yourkey'
 };

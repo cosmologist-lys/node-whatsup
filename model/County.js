@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var County = new Schema({
 	no:Number,
 	cityNo:Number,
+	wid:String,
 	name:String
 });
 

@@ -25,11 +25,12 @@ router.get('/index',function (req, res) {
 	var pros = req.session.provinces;
 	var cities = req.session.cities;
 	var counties = req.session.counties;
+	var weather = req.session.weather;
 	Area.find(function (err, docs) {
 		if (tool.isNotNull(docs)) areas = docs;
 		res.render('weather/weatherlist',
 			{user:user,flg:flg,time:time,
-				areas:areas,pros:pros,cities:cities,counties:counties});
+				areas:areas,pros:pros,cities:cities,counties:counties,weather:weather});
 	})
 });
 
@@ -80,6 +81,7 @@ router.get('/queryCounty',function (req, res) {
 				var county = new County({
 					no : counties[i].id,
 					cityNo: cityNo,
+					wid:counties[i].weather_id,
 					name:counties[i].name
 				});
 				countyBox.push(county);
@@ -88,6 +90,25 @@ router.get('/queryCounty',function (req, res) {
 			res.redirect('/wea/index');
 		}
 	});
+});
+
+router.get('/queryWeather',function (req, res) {
+	var weatherid = req.query.wid;
+	var weatherUrl =kfg.weatherUrl.replace('yourcity',weatherid);
+	weatherUrl = weatherUrl.replace('yourkey',kfg.weatherKey);
+	var weatherBox = [];
+	request(weatherUrl,function (error, response, body) {
+		if (!error && response.statusCode == 200){
+			var weather = ar.JsonWeather(body);
+			weather.save(function (err, doc) {
+				if (err) console.error(err);
+				else {
+					req.session.weather = weather;
+					res.redirect('/wea/index');
+				}
+			})
+ 		}
+	})
 });
 
 

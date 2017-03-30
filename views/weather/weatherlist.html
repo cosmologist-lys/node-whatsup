@@ -42,13 +42,13 @@
         <ul class="dropdown-menu" role="menu">
             <% counties.forEach(function(cou){%>
             <li>
-                <a href="#"><%=cou.name%></a></li>
+                <a href="/wea/queryWeather?wid=<%=cou.wid%>"><%=cou.name%></a></li>
             <%})%>
         </ul>
         <%}%>
     </ul>
 </div>
-
+<p><%=weather%></p>
 <form method="post" class="form-horizontal" role="form">
     <input type="submit" class="btn btn-primary" value="GET">
 </form>
