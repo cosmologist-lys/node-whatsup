@@ -3,8 +3,9 @@ var City = require('../model/City').Demo;
 var County = require('../model/County').Demo;
 var Area = require('../model/Area').Demo;
 var Weather = require('../model/Weather').Demo;
+var tool = require('../tool/tool');
 
-var pack = {
+var weaTool = {
 	packArea : function () {
 		var areas = [];
 		var areaWest = new Area({
@@ -95,7 +96,17 @@ var pack = {
 		});
 		console.log(JSON.stringify(weather));
 		return weather;
+	},
+	loadPic : function (txt) {
+		var picPath = __dirname;
+		if (tool.isContains(txt,'晴')) picPath = picPath.replace('tool','public/weatherPNG/sunny.png');
+		if (tool.isContains(txt,'雨')) picPath = picPath.replace('tool','public/weatherPNG/rainny.png');
+		if (tool.isContains(txt,'雪')) picPath = picPath.replace('tool','public/weatherPNG/snowy.png');
+		if (tool.isContains(txt,'雷')) picPath = picPath.replace('tool','public/weatherPNG/thunder.png');
+		if (tool.isContains(txt,'云')) picPath = picPath.replace('tool','public/weatherPNG/cloudy.png');
+		if (tool.isContains(txt,'晴，云')) picPath = picPath.replace('tool','public/weatherPNG/sunnyCloudy.png');
+		return picPath;
 	}
 };
 
-module.exports = pack;
+module.exports = weaTool;

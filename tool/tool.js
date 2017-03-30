@@ -54,6 +54,15 @@ var util = {
 		else if ( 5 <= guess && guess <= 7) cb = 3;
 		else cb = 4;
 		return cb;
+	},
+	isContains : function (str, substr) {
+	if (arguments.length == 2)
+		return str.indexOf(substr) >= 0;
+	else if (arguments.length > 2)
+		for(var sub in substr){
+			if (str.indexOf(substr[sub]) < 0) return false;
+			return;
+		}
 	}
 };
 

@@ -7,7 +7,7 @@ var Area = require('../model/Area').Demo;
 var reqUtil = require('../tool/reqUtils');
 var tool = require('../tool/tool');
 var reqUtils = require('../tool/reqUtils');
-var ar = require('../tool/pack');
+var wt = require('../tool/weatherTool');
 var request = require('request');
 var kfg = require('../kfg');
 
@@ -74,6 +74,7 @@ router.get('/queryCounty',function (req, res) {
 	var queryurl = req.session.queryurl;
 	var countyurl = queryurl+"/"+cityNo;
 	var countyBox = [];
+	delete req.session.queryurl;
 	request(countyurl, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			var counties = JSON.parse(body);
@@ -96,10 +97,9 @@ router.get('/queryWeather',function (req, res) {
 	var weatherid = req.query.wid;
 	var weatherUrl =kfg.weatherUrl.replace('yourcity',weatherid);
 	weatherUrl = weatherUrl.replace('yourkey',kfg.weatherKey);
-	var weatherBox = [];
 	request(weatherUrl,function (error, response, body) {
 		if (!error && response.statusCode == 200){
-			var weather = ar.JsonWeather(body);
+			var weather = wt.JsonWeather(body);
 			weather.save(function (err, doc) {
 				if (err) console.error(err);
 				else {
