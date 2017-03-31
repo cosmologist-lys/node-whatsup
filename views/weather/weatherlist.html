@@ -49,6 +49,9 @@
     </ul>
 </div>
 <p><%=weather%></p>
+<% if(png){%>
+<img src="<%=png%>" height="100px" width="100px" >
+<%}%>
 <form method="post" class="form-horizontal" role="form">
     <input type="submit" class="btn btn-primary" value="GET">
 </form>

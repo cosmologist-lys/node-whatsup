@@ -98,14 +98,16 @@ var weaTool = {
 		return weather;
 	},
 	loadPic : function (txt) {
-		var picPath = __dirname;
-		if (tool.isContains(txt,'晴')) picPath = picPath.replace('tool','public/weatherPNG/sunny.png');
-		if (tool.isContains(txt,'雨')) picPath = picPath.replace('tool','public/weatherPNG/rainny.png');
-		if (tool.isContains(txt,'雪')) picPath = picPath.replace('tool','public/weatherPNG/snowy.png');
-		if (tool.isContains(txt,'雷')) picPath = picPath.replace('tool','public/weatherPNG/thunder.png');
-		if (tool.isContains(txt,'云')) picPath = picPath.replace('tool','public/weatherPNG/cloudy.png');
-		if (tool.isContains(txt,'晴，云')) picPath = picPath.replace('tool','public/weatherPNG/sunnyCloudy.png');
-		return picPath;
+		var picPath = "http://localhost:3000/wtimgs/";
+		var pic= '';
+		if (tool.isContains(txt,'晴')) pic = 'sunny.png';
+		if (tool.isContains(txt,'雨')) pic = 'rainny.png';
+		if (tool.isContains(txt,'雪')) pic = 'snowy.png';
+		if (tool.isContains(txt,'雷')) pic = 'thunder.png';
+		if (tool.isContains(txt,'云')) pic = 'cloudy.png';
+		if (tool.isContains(txt,'阴')) pic = 'cloudy.png';
+		if (tool.isContains(txt,'晴，云')) pic = 'sunnyCloudy.png';
+		return picPath + pic;
 	}
 };
 

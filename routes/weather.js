@@ -26,11 +26,16 @@ router.get('/index',function (req, res) {
 	var cities = req.session.cities;
 	var counties = req.session.counties;
 	var weather = req.session.weather;
+	var png = '' ;
+	if (weather != undefined){
+		png = wt.loadPic(weather.now.txt);
+	}
 	Area.find(function (err, docs) {
 		if (tool.isNotNull(docs)) areas = docs;
 		res.render('weather/weatherlist',
 			{user:user,flg:flg,time:time,
-				areas:areas,pros:pros,cities:cities,counties:counties,weather:weather});
+				areas:areas,pros:pros,cities:cities,
+				counties:counties,weather:weather,png:png});
 	})
 });
 
