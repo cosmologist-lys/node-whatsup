@@ -22,6 +22,7 @@ app.set('view engine', 'html');
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use('/wtimgs',express.static(path.join(__dirname, 'public/weatherPNG')));
+app.use('/bgimg',express.static(path.join(__dirname, 'public/images')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

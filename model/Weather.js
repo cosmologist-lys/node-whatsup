@@ -7,6 +7,7 @@ var Weather = new Schema({
 		default:Date.now()
 	} ,
 	basic : {
+		city:String,
 		lat : String,
 		lon : String,
 		update : String

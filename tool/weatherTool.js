@@ -47,6 +47,7 @@ var weaTool = {
 		var weatherInfo = JSON.parse(doc);
 		var lat = weatherInfo.HeWeather5[0].basic.lat,
 			lon = weatherInfo.HeWeather5[0].basic.lon,
+			city = weatherInfo.HeWeather5[0].basic.city,
 			update = weatherInfo.HeWeather5[0].basic.update.loc;
 		var txt = weatherInfo.HeWeather5[0].now.cond.txt,
 			tmp = weatherInfo.HeWeather5[0].now.tmp+"℃",
@@ -67,6 +68,7 @@ var weaTool = {
 
 		var weather = new Weather({
 			basic : {
+				city:city,
 				lat : lat,
 				lon : lon,
 				update : update
@@ -94,7 +96,7 @@ var weaTool = {
 				uv : uv
 			}
 		});
-		console.log(JSON.stringify(weather));
+		//console.log(JSON.stringify(weather));
 		return weather;
 	},
 	loadPic : function (txt) {

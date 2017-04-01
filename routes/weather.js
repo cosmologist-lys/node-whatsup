@@ -10,6 +10,8 @@ var reqUtils = require('../tool/reqUtils');
 var wt = require('../tool/weatherTool');
 var request = require('request');
 var kfg = require('../kfg');
+var Weather = require('../model/Weather').Demo;
+
 
 router.use(function (req, res, next) {
 	if (!req.session.user) res.redirect('/');
@@ -26,16 +28,27 @@ router.get('/index',function (req, res) {
 	var cities = req.session.cities;
 	var counties = req.session.counties;
 	var weather = req.session.weather;
-	var png = '' ;
+	var png = '' ,sg = '';
 	if (weather != undefined){
 		png = wt.loadPic(weather.now.txt);
+		sg = weather.suggestion.conf;
 	}
+	var weatherList = [];
 	Area.find(function (err, docs) {
 		if (tool.isNotNull(docs)) areas = docs;
-		res.render('weather/weatherlist',
-			{user:user,flg:flg,time:time,
-				areas:areas,pros:pros,cities:cities,
-				counties:counties,weather:weather,png:png});
+		Weather.find(function (err1, docs1) {
+			var start ,end;
+			if(docs1.length>0 && docs1.length>4) start = docs1.length-1,end = start-4;
+			else if (docs1.length>0) start = docs1.length-1,end = 0;
+			for(var i = start;i>end;i--){
+				weatherList.push(docs1[i]);
+			}
+			res.render('weather/weatherlist',
+				{user:user,flg:flg,time:time,welist:weatherList,
+					sg:sg,areas:areas,pros:pros,cities:cities,
+					counties:counties,weather:weather,png:png});
+		});
+
 	})
 });
 

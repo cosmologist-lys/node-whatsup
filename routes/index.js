@@ -13,7 +13,8 @@ router.use(function (req, res, next) {
 });
 
 var goIndex = router.get('/',function (req, res) {
-    res.render('index');
+    var img = "http://localhost:3000/bgimg/cosmos.jpg";
+    res.render('index',{backimg:img});
 });
 
 router.get('/reg',function (req, res) {

@@ -1,6 +1,7 @@
 <% include ../header.html %>
 <h3>weather</h3>
-<div class="container-fluid">
+<div  style="height: 542px;width:80%">
+<div class="container-fluid" >
     <ul class="nav nav-tabs">
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Area
@@ -48,13 +49,64 @@
         <%}%>
     </ul>
 </div>
-<p><%=weather%></p>
+<div class="container-fluid" style="padding-left: 100px">
+    <div class="flt" style="width: 45%;">
+        <div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>updateTime</th>
+                    <th>cItyName</th>
+                    <th>temp</th>
+                    <th>wind</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% if(welist){%>
+                <% welist.forEach(function (we){ %>
+                <tr>
+                    <td><%=we.basic.update%></td>
+                    <td><%=we.basic.city%></td>
+                    <td><%=we.now.temp%></td>
+                    <td><%=we.now.wind%></td>
+                </tr>
+                <% }) }else{%>
+                <tr>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                    <td>--</td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+        <hr width="700"/>
+        <div></div>
+    </div>
+    <div class="flt" style="width: 45%; padding-left: 300px">
+        <% if(png){%>
+        <img src="<%=png%>" height="100px" width="100px" >
+        <%}%>
+        <% if(weather){%>
+        <strong > <%=weather.basic.city%>   <%=weather.now.temp%></strong>
+        <p>明日天气: <%=weather.forcast.cond%>  <%=weather.forcast.temp_min%> -- <%=weather.forcast.temp_max%></p>
+        <%}%>
+        <%if(sg){%>
+        <article style="width: 85%"><%=sg%></article>
+        <%}%>
+    </div>
+
+</div>
+    <div>
+
+    </div>
+</div>
+<!--<p><%=weather%></p>
 <% if(png){%>
 <img src="<%=png%>" height="100px" width="100px" >
-<%}%>
-<form method="post" class="form-horizontal" role="form">
-    <input type="submit" class="btn btn-primary" value="GET">
-</form>
+<%}%>-->
+<style>.flt{  float: left;  }</style>
 <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <% include ../footer.html %>
