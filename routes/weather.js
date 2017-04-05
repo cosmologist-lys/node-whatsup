@@ -4,7 +4,6 @@ var Province = require('../model/Province').Demo;
 var City = require('../model/City').Demo;
 var County = require('../model/County').Demo;
 var Area = require('../model/Area').Demo;
-var reqUtil = require('../tool/reqUtils');
 var tool = require('../tool/tool');
 var reqUtils = require('../tool/reqUtils');
 var wt = require('../tool/weatherTool');
@@ -36,20 +35,17 @@ router.get('/index',function (req, res) {
 	var weatherList = [];
 	Area.find(function (err, docs) {
 		if (tool.isNotNull(docs)) areas = docs;
-		Weather.find(function (err1, docs1) {
-			var start ,end;
-			if(docs1.length>0 && docs1.length>4) start = docs1.length-1,end = start-4;
-			else if (docs1.length>0) start = docs1.length-1,end = 0;
-			for(var i = start;i>end;i--){
-				weatherList.push(docs1[i]);
+		Weather.find().sort({_id:-1}).limit(5).exec(function (err, weas) {//分页查询，限制查询 id:1升序 id:-1降序
+			if (err) console.error(err);
+			for (var num in weas){
+				weatherList.push(weas[num])
 			}
 			res.render('weather/weatherlist',
 				{user:user,flg:flg,time:time,welist:weatherList,
 					sg:sg,areas:areas,pros:pros,cities:cities,
 					counties:counties,weather:weather,png:png});
+		})
 		});
-
-	})
 });
 
 router.post('/index',function (req, res) {
