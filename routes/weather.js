@@ -38,13 +38,18 @@ router.get('/index',function (req, res) {
 		Weather.find().sort({_id:-1}).limit(5).exec(function (err, weas) {//分页查询，限制查询 id:1升序 id:-1降序
 			if (err) console.error(err);
 			for (var num in weas){
-				weatherList.push(weas[num])
+				weatherList.push(weas[num]);
+				if (weather == undefined || weather == ''){
+					weather = weas[0];
+					png = wt.loadPic(weather.now.txt);
+					sg = weather.suggestion.conf;
+				}
 			}
 			res.render('weather/weatherlist',
 				{user:user,flg:flg,time:time,welist:weatherList,
 					sg:sg,areas:areas,pros:pros,cities:cities,
 					counties:counties,weather:weather,png:png});
-		})
+			})
 		});
 });
 
@@ -109,7 +114,7 @@ router.get('/queryCounty',function (req, res) {
 
 router.get('/queryWeather',function (req, res) {
 	var weatherid = req.query.wid;
-	var weatherUrl =kfg.weatherUrl.replace('yourcity',weatherid);
+	var weatherUrl = kfg.weatherUrl.replace('yourcity',weatherid);
 	weatherUrl = weatherUrl.replace('yourkey',kfg.weatherKey);
 	request(weatherUrl,function (error, response, body) {
 		if (!error && response.statusCode == 200){

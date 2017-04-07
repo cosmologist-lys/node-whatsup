@@ -1,0 +1,41 @@
+<% include ../header.html %>
+<div style="height: 600px;width:80%" class="container">
+    <div class="row">
+        <input type="text" id="todoinput" class="form-control" placeholder="input your todolist" required autofocus>
+    </div>
+    <div class="container">
+        <div style="width: 45%;float: left">
+            <ul class="list-group" id="tdul_left">
+
+            </ul></div>
+        <div style="width: 45%;float: left;padding-left: 2cm">
+            <ul class="list-group" id="tdul_right">
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript">
+	$('#todoinput').bind('keypress',function(event){
+		if(event.keyCode == 13){
+			var input = $("#todoinput").val();
+			$.ajax({
+				url:'/todo/ajax',
+				type:'POST',
+				async:false,
+				data:{input : input},
+				timeout:5000,
+				dataType:'text',    //返回的数据格式：json/xml/html/script/jsonp/text
+				success:function(data){
+					alert(data);
+				},
+				error:function(err){
+					console.log(err);
+				}
+			})
+        }
+	});
+</script>-->
+<script src="http://localhost:3000/public/javascripts/todoJs.js"/>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<% include ../footer.html %>

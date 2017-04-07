@@ -11,6 +11,7 @@ var home = require('./routes/home');
 var blog = require('./routes/blog');
 var blueprint = require('./routes/blueprint');
 var weather = require('./routes/weather');
+var todo = require('./routes/todo');
 
 var app = express();
 var ejs = require('ejs');
@@ -19,8 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('html', ejs.__express);
 app.set('view engine', 'html');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use('/wtimgs',express.static(path.join(__dirname, 'public/weatherPNG')));
 app.use('/bgimg',express.static(path.join(__dirname, 'public/images')));
 app.use('/public',express.static(path.join(__dirname, 'public')));
@@ -42,6 +42,7 @@ app.use('/home', home);
 app.use('/blog',blog);
 app.use('/blue',blueprint);
 app.use('/wea',weather);
+app.use('/todo',todo);
 
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
