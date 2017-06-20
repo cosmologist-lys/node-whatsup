@@ -11,10 +11,8 @@ router.use(function (req, res, next) {
 });
 
 router.get('/main',  function (req, res) {
-    //console.log('/main user:'+JSON.stringify(req.session.user));
      if (tool.isNotNull(req.session.user)){
         var user = req.session.user;
-        //res.render('home',{user:user,time:new Date().toLocaleDateString()})
          res.redirect('/blog/list');
      }else{
         req.session.errmsg = 'ACOUNT WRONG!!!';
