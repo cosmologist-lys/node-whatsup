@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var tool = require('../tool/tool');
-var fn = require('../tool/fn');
-var fs = require('fs');
-var multer = require('multer');
-var upload = multer({ dest: 'public/images'});
-var kfg = require('../kfg');
+const express = require('express');
+const router = express.Router();
+const tool = require('../tool/tool');
+const fn = require('../tool/fn');
+const fs = require('fs');
+const multer = require('multer');
+const upload = multer({ dest: 'public/images'});
+const kfg = require('../kfg');
 
-var ocr = require('baidu-ocr-api').create(kfg.apikey,kfg.secretkey);
+const ocr = require('baidu-ocr-api').create(kfg.apikey,kfg.secretkey);
 
 
 router.use(function (req, res, next) {
@@ -16,21 +16,21 @@ router.use(function (req, res, next) {
 });
 
 router.get('/index',function (req, res) {
-	var user = req.session.user;
-	var time = new Date().toLocaleDateString();
-	var translate = req.session.translate || '';
+	const user = req.session.user;
+	const time = new Date().toLocaleDateString();
+	const translate = req.session.translate || '';
 	res.render('blueprint/bpindex',{flg:'blue',time:time,user:user,translate:translate})
 });
 
 router.post('/index',upload.single('file'),function (req, res) {
-	var fname = JSON.stringify(req.file['filename']);
+	let fname = JSON.stringify(req.file['filename']);
 	fname = fname.replace(/\"/g, "");
-	var imgPath = 'F:/Devs_Kepl/JS-Projects/node-whatsup/public/images/'+fname;
+	const imgPath = 'F:/Devs_Kepl/JS-Projects/node-whatsup/public/images/'+fname;
 	ocr.scan({
 		url:imgPath,
 		type:'text'
 	}).then(function (result) {
-		var translate = result;
+		let translate = result;
 		fs.unlink(imgPath,function (err) {
 			if (err) console.error(err);
 			else {

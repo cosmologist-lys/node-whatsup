@@ -1,13 +1,13 @@
-var express = require('express');
-var router = express.Router();
-var tool = require('../tool/tool');
-var fn = require('../tool/fn');
+const express = require('express');
+const router = express.Router();
+const tool = require('../tool/tool');
+const fn = require('../tool/fn');
 const http = require('http');
 const iconv = require('iconv-lite');
 const BufferHelper = require('bufferhelper');
 const cheerio = require('cheerio');
 let Crawler = require('crawler');
-var kfg = require('../kfg');
+const kfg = require('../kfg');
 
 
 router.use(function (req, res, next) {
@@ -16,7 +16,7 @@ router.use(function (req, res, next) {
 });
 
 router.get('/index', (req,res)=>{
-	var user = req.session.user;
+	const user = req.session.user;
 	const time = new Date().toLocaleDateString();
 	const flg = 'music';
 	const info_sel = kfg.douban_getSinger_Album,
@@ -167,7 +167,7 @@ let promiseHelper = {
 	getSinger_Album : function ($,selector) {//得到歌手和专辑信息
 		if ($ == undefined || $ == '') throw new Error('$ is null baby');
 		return new Promise((reso,reje)=>{
-			var msc = [];
+			const msc = [];
 			$(selector).each(function(i, elem) {
 				let songInfo = $(this).attr().alt;
 				songInfo = songInfo.split('-');
@@ -185,7 +185,7 @@ let promiseHelper = {
 	getRating_or_Pl : function ($,selector) {//得到打分和评价人数信息
 		if ($ == undefined || $ == '') throw new Error('$ is null baby');
 		return new Promise((reso,reje)=>{
-			var msc = [];
+			const msc = [];
 			$(selector).each(function(i, elem) {
 				let info = $(this).text().trim();
 				if (info.length >3){
@@ -240,20 +240,20 @@ const musicHelper = {
 		return box;
 	},
 	bubbleSort : function(box,dir = 'desc'){
-		for(var i=0;i<box.length-1;i++){
-			for(var j=i+1;j<box.length;j++){
+		for(let i=0;i<box.length-1;i++){
+			for(let j=i+1;j<box.length;j++){
 				const m1 = Number(box[i].rating)*10;
 				const m2 = Number(box[j].rating)*10;
 				if (dir.toUpperCase() == 'DESC'){
 					if(m1<m2){
-						var temp=box[i];
+						const temp=box[i];
 						box[i]=box[j];
 						box[j]=temp;
 					}
 				}
 				if (dir.toUpperCase() == 'ASC'){
 					if(m1>m2){
-						var temp=box[i];
+						const temp=box[i];
 						box[i]=box[j];
 						box[j]=temp;
 					}

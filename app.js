@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(session({
     secret: 'kepler',
-    //name: 'testapp',   //这里的name值得是cookie的name，默认cookie的name是：connect.sid
+    //name: 'testapp',   //这里的name指的是cookie的name，默认cookie的name是：connect.sid
     cookie: {maxAge: 60*1000*60*24 },  //设置maxAge是1天，即1天后session和相应的cookie失效过期
     resave: false,
     saveUninitialized: true
@@ -46,23 +46,3 @@ app.use('/blue',blueprint);
 app.use('/wea',weather);
 app.use('/todo',todo);
 app.use('/music',music);
-
-// catch 404 and forward to error handler
-/*app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});*/
-
-// error handler
-/*app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});*/
-
-module.exports = app;

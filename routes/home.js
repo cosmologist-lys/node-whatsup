@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-var tool = require('../tool/tool');
-var SysUser = require('../model/SysUser').Demo;
-var fn = require('../tool/fn');
+const express = require('express');
+const router = express.Router();
+const tool = require('../tool/tool');
+const SysUser = require('../model/SysUser').Demo;
+const fn = require('../tool/fn');
 
 
 router.use(function (req, res, next) {
@@ -12,7 +12,7 @@ router.use(function (req, res, next) {
 
 router.get('/main',  function (req, res) {
      if (tool.isNotNull(req.session.user)){
-        var user = req.session.user;
+        const user = req.session.user;
          res.redirect('/blog/list');
      }else{
         req.session.errmsg = 'ACOUNT WRONG!!!';

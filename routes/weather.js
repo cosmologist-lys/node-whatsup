@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var Province = require('../model/Province').Demo;
-var City = require('../model/City').Demo;
-var County = require('../model/County').Demo;
-var Area = require('../model/Area').Demo;
-var tool = require('../tool/tool');
-var reqUtils = require('../tool/reqUtils');
-var wt = require('../tool/weatherTool');
-var request = require('request');
-var kfg = require('../kfg');
-var Weather = require('../model/Weather').Demo;
+let express = require('express');
+let router = express.Router();
+let Province = require('../model/Province').Demo;
+let City = require('../model/City').Demo;
+let County = require('../model/County').Demo;
+let Area = require('../model/Area').Demo;
+let tool = require('../tool/tool');
+let reqUtils = require('../tool/reqUtils');
+let wt = require('../tool/weatherTool');
+let request = require('request');
+let kfg = require('../kfg');
+let Weather = require('../model/Weather').Demo;
 
 
 router.use(function (req, res, next) {
@@ -19,25 +19,25 @@ router.use(function (req, res, next) {
 
 
 router.get('/index',function (req, res) {
-	var user = req.session.user;
-	var time = new Date().toLocaleDateString();
-	var flg = 'weather';
-	var areas = [];
-	var pros = req.session.provinces;
-	var cities = req.session.cities;
-	var counties = req.session.counties;
-	var weather = req.session.weather;
-	var png = '' ,sg = '';
+	let user = req.session.user;
+	let time = new Date().toLocaleDateString();
+	let flg = 'weather';
+	let areas = [];
+	let pros = req.session.provinces;
+	let cities = req.session.cities;
+	let counties = req.session.counties;
+	let weather = req.session.weather;
+	let png = '' ,sg = '';
 	if (weather != undefined){
 		png = wt.loadPic(weather.now.txt);
 		sg = weather.suggestion.conf;
 	}
-	var weatherList = [];
+	let weatherList = [];
 	Area.find(function (err, docs) {
 		if (tool.isNotNull(docs)) areas = docs;
 		Weather.find().sort({_id:-1}).limit(5).exec(function (err, weas) {//分页查询，限制查询 id:1升序 id:-1降序
 			if (err) console.error(err);
-			for (var num in weas){
+			for (let num in weas){
 				weatherList.push(weas[num]);
 				if (weather == undefined || weather == ''){
 					weather = weas[0];
@@ -58,7 +58,7 @@ router.post('/index',function (req, res) {
 });
 
 router.get('/queryProvince',function (req, res) {
-	var areaNo = req.query.no;
+	let areaNo = req.query.no;
 	Province.find({areaNo : areaNo},function (err, docs) {
 		if (!err) req.session.provinces = docs;
 		else  console.error(err);
@@ -67,15 +67,15 @@ router.get('/queryProvince',function (req, res) {
 });
 
 router.get('/queryCity',function (req, res) {
-	var proNo = req.query.no;
-	var cityurl = kfg.prurl+"/"+proNo;
+	let proNo = req.query.no;
+	let cityurl = kfg.prurl+"/"+proNo;
 	req.session.queryurl = cityurl;
-	var cityBox = [];
+	let cityBox = [];
 	request(cityurl, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
-			var cities = JSON.parse(body);
-			for(var i=0;i<cities.length;i++){
-				var city = new City({
+			let cities = JSON.parse(body);
+			for(let i=0;i<cities.length;i++){
+				let city = new City({
 					no : cities[i].id,
 					provinceNo: proNo,
 					name:cities[i].name
@@ -89,16 +89,16 @@ router.get('/queryCity',function (req, res) {
 });
 
 router.get('/queryCounty',function (req, res) {
-	var cityNo = req.query.no;
-	var queryurl = req.session.queryurl;
-	var countyurl = queryurl+"/"+cityNo;
-	var countyBox = [];
+	let cityNo = req.query.no;
+	let queryurl = req.session.queryurl;
+	let countyurl = queryurl+"/"+cityNo;
+	let countyBox = [];
 	delete req.session.queryurl;
 	request(countyurl, function (error, response, body) {
 		if (!error && response.statusCode == 200) {
-			var counties = JSON.parse(body);
-			for(var i=0;i<counties.length;i++){
-				var county = new County({
+			let counties = JSON.parse(body);
+			for(let i=0;i<counties.length;i++){
+				let county = new County({
 					no : counties[i].id,
 					cityNo: cityNo,
 					wid:counties[i].weather_id,
@@ -113,12 +113,12 @@ router.get('/queryCounty',function (req, res) {
 });
 
 router.get('/queryWeather',function (req, res) {
-	var weatherid = req.query.wid;
-	var weatherUrl = kfg.weatherUrl.replace('yourcity',weatherid);
+	let weatherid = req.query.wid;
+	let weatherUrl = kfg.weatherUrl.replace('yourcity',weatherid);
 	weatherUrl = weatherUrl.replace('yourkey',kfg.weatherKey);
 	request(weatherUrl,function (error, response, body) {
 		if (!error && response.statusCode == 200){
-			var weather = wt.JsonWeather(body);
+			let weather = wt.JsonWeather(body);
 			weather.save(function (err, doc) {
 				if (err) console.error(err);
 				else {
