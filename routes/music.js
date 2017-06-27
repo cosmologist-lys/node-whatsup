@@ -16,7 +16,7 @@ router.use(function (req, res, next) {
 });
 
 router.get('/index', (req,res)=>{
-	const user = req.session.user;
+	var user = req.session.user;
 	const time = new Date().toLocaleDateString();
 	const flg = 'music';
 	const info_sel = kfg.douban_getSinger_Album,

@@ -16,7 +16,7 @@ router.use(function (req, res, next) {
 });
 
 router.get('/index',function (req, res) {
-	const user = req.session.user;
+	var user = req.session.user;
 	const time = new Date().toLocaleDateString();
 	const translate = req.session.translate || '';
 	res.render('blueprint/bpindex',{flg:'blue',time:time,user:user,translate:translate})

@@ -1,0 +1,37 @@
+char* cardNo,
+char* customerNo,
+ double * orderamount, 
+ double * ordertotal
+, int * orderNum,
+ int * meterType, 1;//阶梯预付费模式  2;//流量付费模式
+ int * cardstate,  1;//新开户卡 2;//用户卡 *cardstate = 3;//工具卡
+int * qmax, 过流量值
+double * dpp1, 阶梯起价1
+int * dps1,  阶梯气量1
+double * dpp2, 
+int * dps2, 
+double * dpp3, 
+int * dps3,
+ double * dpp4,
+ int * dpcycle,  执行周期
+int * dpmonth, 结算月份
+int * repairFlag,  1;//补卡 2;//非补卡
+int * max, 最大购气量
+double * hint,  提示值
+double *warm, 报警值
+ char * buydate 购气时间
+,double * predpp1, 阶梯预调价1
+ int * predps1,  阶梯预调气量1
+double * predpp2,
+ int * predps2, 
+double * predpp3,
+ int * predps3, 
+double * predpp4,
+ int * predpcycle,预调执行周期
+ int * predpmonth,  预调结算月份
+char * predate, 调价日期
+ int * preflag, 调价标志位  1;//需调价，调价前 2;//需调价，调价后  *preflag = 3;//不需调价
+ int * bindFlag,  1;//未上表 2;//已上表
+int * company, 
+double * usedAmount, 表反写的已用气量
+ double * remainAmount) 表反写 剩余气量

@@ -46,3 +46,5 @@ app.use('/blue',blueprint);
 app.use('/wea',weather);
 app.use('/todo',todo);
 app.use('/music',music);
+
+module.exports = app;
