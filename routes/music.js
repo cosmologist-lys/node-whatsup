@@ -9,11 +9,11 @@ const cheerio = require('cheerio');
 let Crawler = require('crawler');
 const kfg = require('../kfg');
 
-
 router.use(function (req, res, next) {
 	if (!req.session.user) res.redirect('/');
 	next();
 });
+
 
 router.get('/index', (req,res)=>{
 	var user = req.session.user;
@@ -56,16 +56,13 @@ router.get('/index', (req,res)=>{
 						);
 					console.timeEnd('总耗时');
 					res.render('music/musiclist',
-						{user:user,flg:flg,time:time,
+						{user:user,time:time,
 						music:box})
 				}
 			}
 		})
 	}
 });
-
-
-
 
 let promiseHelper = {
 	getPromise: function (url) {

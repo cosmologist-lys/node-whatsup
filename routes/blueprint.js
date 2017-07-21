@@ -6,9 +6,9 @@ const fs = require('fs');
 const multer = require('multer');
 const upload = multer({ dest: 'public/images'});
 const kfg = require('../kfg');
-
 const ocr = require('baidu-ocr-api').create(kfg.apikey,kfg.secretkey);
-
+const ocrUtil = require('../tool/ocrUtil');
+const AipOcr = require('../sdk/src').ocr;
 
 router.use(function (req, res, next) {
 	if (!req.session.user) res.redirect('/');
@@ -26,22 +26,32 @@ router.post('/index',upload.single('file'),function (req, res) {
 	let fname = JSON.stringify(req.file['filename']);
 	fname = fname.replace(/\"/g, "");
 	const imgPath = 'F:/Devs_Kepl/JS-Projects/node-whatsup/public/images/'+fname;
-	ocr.scan({
-		url:imgPath,
-		type:'text'
-	}).then(function (result) {
-		let translate = result;
+	const image = fs.readFileSync(imgPath);
+	/*ocrUtil.getToken(
+		({token})=>{
+			ocrUtil.getTranslate(token,image)
+		}
+	);*/
+	const appid = '9915553',
+		ak = 'Uaj4RnrULunU5QVyIsnmnjjR',
+		sk = 'wqT4AlfgdUtGQBRLf4ovZBNBqUAuWqxA';
+	const OcrClient = new AipOcr(appid, ak, sk);
+	var base64Img = new Buffer(image).toString('base64');
+	let result = '';
+	OcrClient.generalBasic(base64Img).then(function(result) {
+		result.words_result.forEach((w)=>{
+			result += w['words'].trim().replace(/\"/g, "  ");
+		})
 		fs.unlink(imgPath,function (err) {
 			if (err) console.error(err);
 			else {
-				translate = JSON.stringify(translate['results']['words']);
-				req.session.translate = translate;
+				req.session.translate = result;
 				res.redirect('/blue/index');
 			}
 		})
-	}).catch(function (err) {
-		console.error('err', err);
 	});
+
+
 });
 
 module.exports = router;

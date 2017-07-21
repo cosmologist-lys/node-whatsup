@@ -1,35 +1,35 @@
-var Province = require('../model/Province').Demo;
-var City = require('../model/City').Demo;
-var County = require('../model/County').Demo;
-var Area = require('../model/Area').Demo;
-var Weather = require('../model/Weather').Demo;
-var tool = require('../tool/tool');
+const Province = require('../model/Province').Demo;
+const City = require('../model/City').Demo;
+const County = require('../model/County').Demo;
+const Area = require('../model/Area').Demo;
+const Weather = require('../model/Weather').Demo;
+const tool = require('../tool/tool');
 
-var weaTool = {
+const weaTool = {
 	packArea : function () {
-		var areas = [];
-		var areaWest = new Area({
+		let areas = [];
+		let areaWest = new Area({
 			no : 1,
 			name :'west'
 		});
 		areaWest.save(function (err, doc) {
 			if (err) console.error(err);
 		});
-		var areaNorth = new Area({
+		let areaNorth = new Area({
 			no : 2,
 			name :'notrh'
 		});
 		areaNorth.save(function (err, doc) {
 			if (err) console.error(err);
 		});
-		var areaEast = new Area({
+		let areaEast = new Area({
 			no : 3,
 			name :'east'
 		});
 		areaEast.save(function (err, doc) {
 			if (err) console.error(err);
 		});
-		var areaSouth = new Area({
+		let areaSouth = new Area({
 			no : 4,
 			name :'south'
 		});
@@ -44,20 +44,20 @@ var weaTool = {
 	},
 	JsonWeather : function (doc) {
 		console.log(doc);
-		var weatherInfo = JSON.parse(doc);
-		var lat = weatherInfo.HeWeather5[0].basic.lat,
+		let weatherInfo = JSON.parse(doc);
+		let lat = weatherInfo.HeWeather5[0].basic.lat,
 			lon = weatherInfo.HeWeather5[0].basic.lon,
 			city = weatherInfo.HeWeather5[0].basic.city,
 			update = weatherInfo.HeWeather5[0].basic.update.loc;
-		var txt = weatherInfo.HeWeather5[0].now.cond.txt,
+		let txt = weatherInfo.HeWeather5[0].now.cond.txt,
 			tmp = weatherInfo.HeWeather5[0].now.tmp+"℃",
 			wind =weatherInfo.HeWeather5[0].now.wind.dir+weatherInfo.HeWeather5[0].now.wind.sc;
-		var cond =weatherInfo.HeWeather5[0].daily_forecast[1].cond.txt_n+"|"+weatherInfo.HeWeather5[0].daily_forecast[1].cond.txt_d,
+		let cond =weatherInfo.HeWeather5[0].daily_forecast[1].cond.txt_n+"|"+weatherInfo.HeWeather5[0].daily_forecast[1].cond.txt_d,
 			date =weatherInfo.HeWeather5[0].daily_forecast[1].date,
 			tmpmax =weatherInfo.HeWeather5[0].daily_forecast[1].tmp.max,
 			tmpmin = weatherInfo.HeWeather5[0].daily_forecast[1].tmp.min,
 			windsc =weatherInfo.HeWeather5[0].daily_forecast[1].wind.sc;
-		var air =weatherInfo.HeWeather5[0].suggestion.air.brf+"|"+weatherInfo.HeWeather5[0].suggestion.air.txt,
+		let air =weatherInfo.HeWeather5[0].suggestion.air.brf+"|"+weatherInfo.HeWeather5[0].suggestion.air.txt,
 			conf = weatherInfo.HeWeather5[0].suggestion.comf.brf+"|"+weatherInfo.HeWeather5[0].suggestion.comf.txt,
 			cw = weatherInfo.HeWeather5[0].suggestion.cw.brf+"|"+weatherInfo.HeWeather5[0].suggestion.cw.txt,
 			drs = weatherInfo.HeWeather5[0].suggestion.drsg.brf+"|"+weatherInfo.HeWeather5[0].suggestion.drsg.txt,
@@ -66,7 +66,7 @@ var weaTool = {
 			travel = weatherInfo.HeWeather5[0].suggestion.trav.brf+"|"+weatherInfo.HeWeather5[0].suggestion.trav.txt,
 			uv = weatherInfo.HeWeather5[0].suggestion.uv.brf+"|"+weatherInfo.HeWeather5[0].suggestion.uv.txt;
 
-		var weather = new Weather({
+		let weather = new Weather({
 			basic : {
 				city:city,
 				lat : lat,
@@ -100,8 +100,8 @@ var weaTool = {
 		return weather;
 	},
 	loadPic : function (txt) {
-		var picPath = "http://localhost:3000/wtimgs/";
-		var pic= '';
+		let picPath = "http://localhost:3000/wtimgs/";
+		let pic= '';
 		if (tool.isContains(txt,'晴')) pic = 'sunny.png';
 		if (tool.isContains(txt,'雨')) pic = 'rainny.png';
 		if (tool.isContains(txt,'雪')) pic = 'snowy.png';
