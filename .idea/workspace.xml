@@ -2,52 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="30ae70dc-dde9-4f91-81c9-10d4195a33ad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bootstrap-timepicker/bootstrap-datetimepicker.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/bootstrap-timepicker/bootstrap-datetimepicker.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jedate/jedate.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jedate/jedate.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jedate/skin/gray.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jedate/skin/green.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jedate/skin/jedate.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/javascripts/jedate/skin/red.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/package.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/AipFace.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/AipImageCensor.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/AipKg.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/AipNlp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/AipOcr.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/AipSpeech.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/bceAuth/auth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/bceAuth/crypto.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/bceAuth/headers.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/bceAuth/strings.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/cloudAuth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/devAuth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/auth/devAuthToken.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/client/baseClient.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/client/requestInfo.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/client/task.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/const/code.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/const/devScope.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/const/httpHeader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/http/httpClient.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/http/httpClientExt.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/http/httpClientNlp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/http/httpClientVoiceASR.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/http/httpClientVoiceTTS.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/util/eventPromise.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sdk/src/util/objectTools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tool/ocrUtil.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/public/images/7b9821dca5f3ee151599a7d5077cf582" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/blueprint.js" afterPath="$PROJECT_DIR$/routes/blueprint.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/music.js" afterPath="$PROJECT_DIR$/routes/music.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tool/weatherTool.js" afterPath="$PROJECT_DIR$/tool/weatherTool.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/music/musiclist.html" afterPath="$PROJECT_DIR$/views/music/musiclist.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,11 +21,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="blueprint.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="blueprint.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/blueprint.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="367">
               <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="21">
+              <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -172,7 +138,6 @@
         <option value="$PROJECT_DIR$/views/footer.html" />
         <option value="$PROJECT_DIR$/public/javascripts/vue-model.js" />
         <option value="$PROJECT_DIR$/views/musiclist.html" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/routes/weather.js" />
         <option value="$PROJECT_DIR$/routes/home.js" />
         <option value="$PROJECT_DIR$/routes/index.js" />
@@ -186,6 +151,7 @@
         <option value="$PROJECT_DIR$/tool/ocrUtil.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/routes/blueprint.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -453,7 +419,7 @@
       <workItem from="1499394175050" duration="20000" />
       <workItem from="1499668861195" duration="1800000" />
       <workItem from="1500453062206" duration="4867000" />
-      <workItem from="1500600109365" duration="11655000" />
+      <workItem from="1500600109365" duration="11713000" />
     </task>
     <task id="LOCAL-00001" summary="create index.html">
       <created>1488781679035</created>
@@ -714,11 +680,18 @@
       <option name="project" value="LOCAL" />
       <updated>1498552011573</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="modify the blueprint baidu-ocr-ai">
+      <created>1500629121392</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1500629121392</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295291000" />
+    <option name="totallyTimeSpent" value="295349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
@@ -777,7 +750,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="express-session.&#10;REMENBER!!! : app.use(session....) must put before app.user(route)" />
     <MESSAGE value="session edit" />
     <MESSAGE value="session fix.&#10;mongo-connect(session)&#10;should i use it? to store in the db?&#10;come back later" />
     <MESSAGE value="add header of main.html" />
@@ -802,7 +774,8 @@
     <MESSAGE value="优化mongo查询天气" />
     <MESSAGE value="add todoindex.html and todoJS." />
     <MESSAGE value="add douban music top 250 crawler" />
-    <option name="LAST_COMMIT_MESSAGE" value="add douban music top 250 crawler" />
+    <MESSAGE value="modify the blueprint baidu-ocr-ai" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify the blueprint baidu-ocr-ai" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -878,14 +851,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-621">
-          <caret line="10" column="25" lean-forward="true" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1000,6 +965,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="14" column="3" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1021,6 +987,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
           <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1171,6 +1138,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="55" column="0" lean-forward="true" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="10" column="25" lean-forward="false" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
           <folding />
         </state>
       </provider>
